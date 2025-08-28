@@ -29,7 +29,9 @@ const questions = [
     answer: "Ottawa",
   },
 ];
-// Load saved answers from sessionStorage or initialize empty array
+
+
+
 let userAnswers = JSON.parse(sessionStorage.getItem("progress")) || [];
 
 // Load saved score from localStorage and display if it exists
@@ -60,7 +62,7 @@ function renderQuestions() {
 
       // Restore saved answer
       if (userAnswers[i] === choice) {
-        choiceElement.setAttribute("checked", "checked");
+        choiceElement.checked = true; // Use property instead of attribute
       }
 
       // Save selection to sessionStorage
@@ -88,9 +90,7 @@ document.getElementById("submit").addEventListener("click", () => {
       score++;
     }
   }
-  // Display score
   document.getElementById("score").innerText = `Your score is ${score} out of 5.`;
-  // Save score to localStorage
   localStorage.setItem("score", score);
 });
 
